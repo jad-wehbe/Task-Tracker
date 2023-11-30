@@ -37,7 +37,7 @@ export default {
     async created() {
         // const res = await fetch("http://localhost:5000/api/tasks")
         try {
-            const res = await fetch("/api/tasks")
+            const res = await fetch("http://localhost:5000/api/tasks")
             console.log(res)
             const tasks = await res.json()
             store.tasks = tasks.data

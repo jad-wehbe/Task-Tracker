@@ -31,7 +31,7 @@ export const store = reactive({
             temp.reminder = reminder
         }
 
-        const res = await fetch(`backend/tasks/${id}`, {
+        const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const store = reactive({
     async deleteTask(id: string) {
         this.tasks = this.tasks.filter((task) => task.id !== id)
 
-        const res = await fetch(`backend/tasks/${id}`, {
+        const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
             method: "DELETE",
         })
     },
@@ -55,9 +55,12 @@ export const store = reactive({
             temp.reminder = !temp.reminder
         }
 
-        const res = await fetch(`backend/tasks/${id}/toggle`, {
-            method: "PATCH",
-        })
+        const res = await fetch(
+            `http://localhost:5000/api/tasks/${id}/toggle`,
+            {
+                method: "PATCH",
+            }
+        )
     },
 
     async addTask(text: string, day?: string, reminder = false) {
@@ -68,7 +71,7 @@ export const store = reactive({
         }
         this.tasks.push(newTask)
 
-        const res = await fetch(`backend/tasks`, {
+        const res = await fetch(`http://localhost:5000/api/tasks`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
